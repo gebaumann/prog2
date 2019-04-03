@@ -1,0 +1,56 @@
+<html lang="pt-br" >
+    <head>
+        <meta charset="utf-8">
+        <title>Listar pessoa</title>  
+        <style type="text/css">
+            .tg  {border-collapse:collapse;border-spacing:0;}
+            .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+            .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+            .tg .tg-0lax{text-align:left;vertical-align:top}
+        </style>  
+    </head>
+    <body>
+        <table class="tg">
+            <tr>
+            <th class="tg-0lax">João Pedro</th>
+            <th class="tg-0lax"><a href="/alterar_pessoas">Editar</a></th>
+            <th class="tg-0lax"><a href="/exibir_mensagem">Excluir</a></th>
+            </tr>
+            <tr>
+            <td class="tg-0lax">Maria</td>
+            <td class="tg-0lax"><a href="/alterar_pessoas">Editar</a></td>
+            <td class="tg-0lax"><a href="/exibir_mensagem">Excluir</a></td>
+            </tr>
+            <tr>
+            <td class="tg-0lax">José</td>
+            <td class="tg-0lax"><a href="/alterar_pessoas">Editar</a></td>
+            <td class="tg-0lax"><a href="/exibir_mensagem">Excluir</a></td>
+            </tr>
+        </table> 
+        <br>   
+        <hr> 
+
+        <h1>BEM VINDO A AULA JINJA</h1>
+        <h3>Nomes:</h3>
+        {% for p in geral: %} 
+        	<p>Nome: {{p.nome}}</p> <p>  Endereço: {{p.endereco}}</p> <p>   Telefone: {{p.telefone}}</p>
+            <a href="/excluir_pessoa?nome={{p.nome}}">Excluir</a>
+       		<hr>
+       		<br>
+        {%endfor%}
+
+       
+
+         <h1> Recentes </h1>
+        {% for pessoa in teste:%}
+        	<p>Nome: {{pessoa.nome}}</p>
+        	<p>Endereço: {{pessoa.endereco}}</p>
+        	<p> Telefone: {{pessoa.telefone}}</p>
+        {%endfor%}
+
+
+        <a href="/inserir_pessoa"> Inserir Pessoas</a> 
+        <hr> 
+
+    </body>
+</html>
