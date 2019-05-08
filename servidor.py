@@ -1,6 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect
 
 app=Flask(__name__)
+
+app.config["SECRET_KEY"] = "camelo"
 
 class Pessoa:
     def __init__(self,nome,endereco,telefone):
@@ -55,5 +57,25 @@ def excluir():
     if achou != None:
         lista_de_pessoas.remove(achou)
     return listar_pessoas()
+
+@app.route("/login")
+def login():
+    login = request.args.get("login")
+    senha = request.args.get("senha")
+    if login == "Ana" and senha == "123":
+        session["usuario"] = login
+        return redirect("/")
+    else:
+        return "login/senha inválidos"
+
+@app.route("/form_login")
+def form_login():
+   return render_template("form_login.html")
+
+
+@app.route("/logout")
+def logout():
+    session.pop("usuario")
+    return redirect("/")
     
 app.run()
