@@ -4,9 +4,16 @@
         <title>Alterar pessoa</title>    
     </head>
     <body>
-        <form action="/exibir_mensagem">
-                First name: <input type="text" name="FirstName" value="João Pedro"><br>
-                <input type="submit" value="Submit">
+        <form action=/alterar_pessoa>
+                Nome: <input type="text" name="nome" value= {{informacoes.nome}}>
+                <br>
+                <input nome=nome_original value={{informacoes.nome}} type=hidden>
+                <button>Alterar</button>
+            {%if session ["usuario"]%}
+                <a href="/logout">Logout</a>
+            {%else%}
+                <a href="/form_login">Login</a>
+            {%endif%} 
         </form>
     </body>
 </html>
