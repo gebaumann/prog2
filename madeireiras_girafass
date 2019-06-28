@@ -1,46 +1,50 @@
 from flask import Flask, render_template, request, redirect , url_for, session
-import peewee, os
+from peewee import * 
 
 app = Flask(__name__)
-app.config ["SECRET_KEY"] = "bla"
+app.config ["SECRET_KEY"] = "cha"
 
-db = peewee.SqliteDatabase('pessoas.db')
+db = SqliteDatabase('pessoas.db')
 
-class BaseModel(peewee.Model):
+class BaseModel(Model):
     class Meta:
         database = db
 
 class Pessoa(BaseModel):
-    nome = peewee.CharField()
-    cpf = peewee.CharField()
+    nome = CharField()
+    cpf = CharField()
     def __str__(self):
         return self.nome+","+self.cpf 
 
 class Material(BaseModel):
-    nome= peewee.CharField()
-    valor= peewee.CharField()
-    quantidade= peewee.CharField()
+    nome= CharField()
+    valor= CharField()
+    quantidade= CharField()
     def __str__(self):
-        return self.nome+","+self.valor+","self.quantidade
-
-class Pedido(BaseModel):
-    nome_mobilia= peewee.ForeignKeyField()
-    valor= peewee.CharField()
-    quantidade= peewee.CharField()
-    cpf= peewee.ForeignKeyField()
-    def __str__(self):
-        return self.nome_mobilia+","+self.valor+","self.quantidade+","self.cpf
+        return self.nome+","+self.valor+","+self.quantidade
 
 class Mobilia(BaseModel):
-    nome_mobilia= peewee.CharField()
-    valor= peewee.CharField()
-    materiais= peewee.CharField()
+    nome_mobilia= CharField()
+    valor= CharField()
+    materiais= CharField()
     def __str__(self):
-        return self.nome_mobilia+","+self.valor+","self.materiais
+        return self.nome_mobilia+","+self.valor+","+self.materiais
+
+class Pedido(BaseModel):
+    nome_mobilia= ForeignKeyField(Mobilia)
+    valor= CharField()
+    quantidade= CharField()
+    pessoa= ForeignKeyField(Pessoa)
+    def __str__(self):
+        return self.nome_mobilia+","+self.valor+","+self.quantidade+","+self.cpf
 
     
 db.connect()
-db.create_tables([Pessoa]) 
+db.create_tables([ 
+Pessoa, 
+Material, 
+Pedido,
+Mobilia, ])
 
 lista_de_pessoas=[]
 
