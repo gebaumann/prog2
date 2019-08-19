@@ -1,0 +1,25 @@
+from flask import Flask, render_template, request, redirect , url_for, session
+import peewee, os
+
+app = Flask(__name__)
+app.config ["SECRET_KEY"] = "bleh"
+
+db = peewee.SqliteDatabase('prova2.db')
+
+class BaseModel(peewee.Model):
+    class Meta:
+        database = db
+
+
+class Cliente(BaseModel):
+nome_cliente = CharField()
+contatos = CharField()
+
+class Servico(BaseModel):
+nome_servico = CharField()
+preco = FloatField()
+
+class ServicoPrestado(BaseModel):
+data = DateField()
+servico = ForeignKeyField(Servico)
+cliente = ForeignKeyField(Cliente)
