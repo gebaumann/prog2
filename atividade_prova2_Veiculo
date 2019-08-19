@@ -1,0 +1,26 @@
+from flask import Flask, render_template, request, redirect , url_for, session
+import peewee, os
+
+app = Flask(__name__)
+app.config ["SECRET_KEY"] = "bleh"
+
+db = peewee.SqliteDatabase('prova2.db')
+
+class BaseModel(peewee.Model):
+    class Meta:
+        database = db
+
+
+class Veiculo(BaseModel):
+nome = CharField()
+marca = CharField()
+codigo = FloatField()
+
+class Ponto(BaseModel):
+nomePonto = CharField()
+
+class Viagem(BaseModel):
+data = DateField()
+veiculo = ForeignKeyField(Veiculo)
+embarque = CharField()
+desembarque = CharField()
