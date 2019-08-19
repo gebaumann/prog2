@@ -1,0 +1,35 @@
+from flask import Flask, render_template, request, redirect , url_for, session
+import peewee, os
+
+app = Flask(__name__)
+app.config ["SECRET_KEY"] = "bleh"
+
+db = peewee.SqliteDatabase('prova2.db')
+
+class BaseModel(peewee.Model):
+    class Meta:
+        database = db
+
+class Peca(BaseModel):
+	nome_peca = Charfield()
+	funcionalidade = Charfield() 
+	preco = FloatField()
+
+class Vendedor(BaseModel):
+	nome_vendedor = Charfield()
+	endereco = Charfield()
+
+class Orcamento(BaseModel):
+	tempo_entrega = DateField()
+	peca = ForeignKeyField()
+	vendedor = ForeignKeyField()
+
+
+
+#------------------------------------------
+
+placa_arduino = Peca.create(nome_peca = "Placa Arduino", funcionalidade = "Controlar Robô", preco = "200")
+presi = Vendedor.create(nome_vendedor = "Presi", endereco = "Blumenau")
+orcamento = Orcamento.create(tempo_entrega = Datetime(2019, 8, 19), peca = placa_arduino, vendedor = presi)
+
+print(orcamento.tempo_entrega, orcamento.peca.nome_peca, orcamento.peca.funcionalidade, orcamento.peca.preco, orcamento.vendedor.nome_vendedor, orcamento.vendedor.endereco)
