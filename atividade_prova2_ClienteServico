@@ -28,7 +28,7 @@ cliente = ForeignKeyField(Cliente)
 
 alexia = Cliente.create(nome_cliente = "Aléxia Tainá", contatos = "944444444")
 backup = Servico.create(nome_servico = "Backup", preco = "55")
-sp = ServicoPrestado.create(data = Datetime(2019, 8, 19), servico = backup, cliente = alexia)
+sp = ServicoPrestado.create(data = datetime(2019, 8, 19), servico = backup, cliente = alexia)
 
 print(sp.data, sp.servico.nome_servico, sp.servico.preco, sp.cliente.nome_cliente, sp.cliente.contatos)
 
