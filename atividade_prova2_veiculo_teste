@@ -1,0 +1,6 @@
+caloi1 = Veiculo.create(nome = "Bicicleta", marca = "caloi", codigo = "001")
+centro = Ponto.create(nomePonto = "ponto do centro")
+vilaNova = Ponto.create(nomePonto = "ponto Vila Nova")
+viagem1 = Viagem.create(data = datetime(2019, 8, 6), veiculo = caloi1, embarque = centro, desembarque = vilaNova)
+
+print(viagem1.data, viagem1.marca, viagem1.codigo, viagem1.embarque.nome, viagem1.desembarque.nome)
