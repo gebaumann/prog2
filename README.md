@@ -1,4 +1,4 @@
 # prog2
 
-(teste) esse ano eu vou gostar de coco (testando complicaçao manual 2)
+preciso aprender pra ontem
 
