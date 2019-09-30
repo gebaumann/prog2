@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Testezin do Jquery</title>
+</head>
+<body>
+
+
+	<div id="conteudo"></div>
+
+
+	<hr>
+
+
+
+	Digite um texto:
+
+	<input type="text" id="novo">
+	<button id="alterar">Alterar</button>
+
+	<hr id="linha2">
+
+	<img id="imagem" src="imagem.png" height="128">
+
+</body>
+
+<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+
+<script>
+	
+	$('#conteudo').text("Olá, Gustavo passou por aqui, clika no tigre!");
+
+	$('#alterar').click (function () {
+		var digitado = $('#novo').val();
+
+		$('#conteudo').text(digitado);
+
+	});
+
+
+	$("#imagem").click(function(){
+
+		$(this) .fadeOut(2500);
+		$("#linha2").fadeOut(2500);
+
+	});
+
+
+
+</script>
+
+
+</html>
