@@ -7,28 +7,31 @@
 	<meta charset="utf-8">
 
 </head>
-<body>
+<body style="background-color: #ffb3b3">
 
 
-	<div id="conteudo"></div>
 
 
 	<hr>
 
 	<div>
 
-	Digite um texto:
+	<h3> Digite: </h3>
 
-	<input type="text" id="novo">
+	<h5>
+	 1 para girafa</h5>
+	 <h5>2 para tigre</h5>
+	<h5> 3 para camelo</h5>
+
+
+	<input type="text" id="novo" style="border-radius: 30px;" >
 	<button id="alterar">Alterar</button>
-	<button id="voltar">Chamar Imagem</button>
-	<hr id="linha2">
 
 
 	</div>
 
 
-	<img id="imagem" src="imagem.png" height="128">
+	<img id="imagem" style="margin-top: 10%; height: 340px; margin-left: 30%;" src="outra1.jpg" height="128">
 
 </body>
 
@@ -36,23 +39,34 @@
 
 <script>
 	
-	$('#conteudo').text("Olá, Gustavo passou por aqui, clika no tigre!");
+
 
 	$('#alterar').click (function () {
-		var digitado = $('#novo').val();
-
-		$('#conteudo').text(digitado);
-
-	});
-
-
-	$("#imagem").click(function(){
+		
 
 		// esconde o tigre
 		$("#imagem").fadeOut(2500, function(){
+		var digitado = $('#novo').val();
+
+			if ( digitado == 1) {
 
 	        $("#imagem").attr("src", "outra.jpg");
 	        $("#imagem").fadeIn(5000);
+	        }
+
+	       else if  (digitado == 2){
+	        	$("#imagem").attr("src", "imagem.jpg");
+	        	$("#imagem").fadeIn(5000);
+	        }
+
+	        else if (digitado == 3 ) {
+	        	$("#imagem").attr("src", "outra1.jpg");
+	        	$("#imagem").fadeIn(5000);
+	        }
+
+
+
+
 
 		});
 
