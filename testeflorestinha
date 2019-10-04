@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Testezin do Jquery</title>
+
+
+	<meta charset="utf-8">
+
+</head>
+<body style="background-color: #ffb3b3">
+
+
+
+
+
+	<hr>
+
+	<div>
+
+	<h3> Digite: </h3>
+
+	<h5>
+	 1 para girafa</h5>
+	 <h5>2 para tigre</h5>
+	<h5> 3 para camelo</h5>
+
+
+	<input type="text" id="novo" style="border-radius: 30px;">
+	<button id="alterar">Alterar</button>
+
+
+	</div>
+
+
+	<img id="imagem" style="margin-top: 10%; height: 250px; position: absolute;" src="outra.jpg" height="128">
+	<img id="imagem2" style="margin-top: 10%; height: 250px; margin-left: 35%; position: absolute;" src="imagem.jpg" height="128">
+	<img id="imagem3" style="margin-top: 10%; height: 250px; margin-left: 70%;" src="outra1.jpg" height="128">
+
+</body>
+
+<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+
+<script>
+	
+
+
+	$('#alterar').click (function () {
+		
+
+		// esconde o tigre
+		$("#imagem2").fadeOut(2500)
+		$("#imagem3").fadeOut(2500)
+		$("#imagem").fadeOut(2500, function(){
+		var digitado = $('#novo').val();
+
+			if ( digitado == 1) {
+	        $("#imagem").attr("src", "outra.jpg");
+	        $("#imagem").fadeIn(5000);
+	        $("#imagem2").attr("src", "outra.jpg");
+	        $("#imagem2").fadeIn(5000);
+	         $("#imagem3").attr("src", "outra.jpg");
+	        $("#imagem3").fadeIn(5000);
+	        }
+
+	       else if  (digitado == 2){
+	        	$("#imagem").attr("src", "imagem.jpg");
+	        	$("#imagem").fadeIn(5000);
+	        	$("#imagem2").attr("src", "imagem.jpg");
+	        	$("#imagem2").fadeIn(5000);
+	        	$("#imagem3").attr("src", "imagem.jpg");
+	        	$("#imagem3").fadeIn(5000);
+	        }
+
+	        else if (digitado == 3 ) {
+	        	$("#imagem").attr("src", "outra1.jpg");
+	        	$("#imagem").fadeIn(5000);
+	        	$("#imagem2").attr("src", "outra1.jpg");
+	        	$("#imagem2").fadeIn(5000);
+	        	$("#imagem3").attr("src", "outra1.jpg");
+	        	$("#imagem3").fadeIn(5000);
+	        }
+
+
+
+
+
+		});
+
+		// troca a imagem para outra
+
+		//$("#imagem").attr("src", "outra.jpg");
+		// reexibe a imagem
+		//$("#imagem").fadeIn(5000);
+
+
+	});
+
+
+
+	$("#voltar").click(function(){
+
+		$("#imagem").fadeIn(2500);
+
+	});
+
+
+
+</script>
+
+
+</html>
