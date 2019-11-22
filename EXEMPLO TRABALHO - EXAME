@@ -1,0 +1,80 @@
+'''exames de sangue são feitos para obter informações sobre a saúde das pessoas. Uma
+requisição de exame de sangue contém as seguintes informações: data, nome do paciente,
+nome do médico e uma lista de exames solicitados. Cada exame possui um preço e um
+prazo de liberação do resultado. Forneça classes do python/peewee que possam incorporar as
+informações de requisições de exame mostradas a seguir, em formato json.
+{
+"lista": [
+{
+"data" : "09/08/2019",
+"paciente" : "Joao da Silva",
+"medico" : "John Hank",
+"exames" : [
+{
+"nome" : "triglicerideos",
+"preco" : 50,
+"prazo" : 2
+},
+{
+"nome" : "glicemia",
+"preco" : 100,
+"prazo" : 3
+}
+]
+},
+{
+"data" : "10/08/2019",
+"paciente" : "Maria Oliveira",
+"medico" : "Hamilton Werneck",
+"exames" : [
+1.14 Consultas a bases de dados públicas 21
+{
+"nome" : "triglicerideos",
+"preco" : 50,
+"prazo" : 2
+}
+]
+}
+]
+}
+
+---------------------------------------------------------------------------------------
+requisição / exame
+'''
+import os
+from peewee import *
+from flask import Flask, json, jsonify
+from playhouse.shortcuts import model_to_dict
+
+arq = 'many−to−many−com−lista.db'
+db = SqliteDatabase (arq )
+
+class BaseModel(Model):
+    class Meta:
+        database = db
+
+class Exame(BaseModel):
+    preco = FloatField()
+    prazo_liberacao = IntegerField()
+    nome = CharField()
+
+class Requisicao(BaseModel):
+    data = CharField()
+    paciente = CharField()
+    medico = CharField()
+    
+class Exames_requisitados(BaseModel):
+    exame = ForeignKeyField(Exame)
+    requisicao = ForeignKeyField(Requisicao)
+
+
+if __name__ == "__main__":
+    db.connect()
+    db.create_tables([Exame, Requisicao, Exames_requisitados])
+
+    exame1 = Exame.create(preco = 50, prazo_liberacao = 2, nome = "triglicerideos")
+    requisicao1 = Requisicao.create(data = "10/08/2019", paciente = "Maria Oliveira", medico = "Hamilton Werneck")
+    examerequisicao1 = Exames_requisitados.create(exame = exame1, requisicao = requisicao1)
+    json = list(map(model_to_dict, Requisicao.select()))
+
+    print(json)
