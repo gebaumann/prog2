@@ -42,7 +42,7 @@ class Visitantes(BaseModel):
 class Ingresso(BaseModel):
     preco = FloatField()
     cod_ingresso = CharField()
-    visitantes = ForeignKeyField(Visitantes)
+    visitante = ForeignKeyField(Visitantes)
 
 class Bilheteria(BaseModel):
     localizacao = CharField()
@@ -74,7 +74,12 @@ if __name__ == "__main__":
     funcionario1 = Funcionario.create(nome = "Joaquim Menezes", cargo = "Veterinário", cpf = "02304202302", turno = "matutino")
     setor1 = Setores.create(nome = "Savana", localizacao = "sul", animais = animal1, tipo_setor = "terrestre")
     visitante1 = Visitantes.create(nome = "Juliana Paes", idade = 42, cpf = "02302502404")
-    ingresso1 = Ingresso.create
+    ingresso1 = Ingresso.create(preco = 14,50, cod_indentificador = 452313, visitante = visitante1)
+    bilheteria1 = Bilheteria.create(localizacao = "norte", ingresso = ingresso1)
+    produtos1 = Produtos.create(tipo_produto = "limpeza", cod_indentificador = 04123733, quantidade = 40)
+    estoque1 = Estoque.create(alimentacao = alimento1, produto = produtos1, forncedor = "mercado tudo")
+    zoologico1 = Zoologico.create(nome = "AnjinhosZoo", setor = setor1, funcionarios = funcionario1)
+    
     json = list(map(model_to_dict, Alimentos.select()))
 
     print(json)
