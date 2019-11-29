@@ -80,15 +80,4 @@ if __name__ == "__main__":
     estoque1 = Estoque.create(alimentacao = alimento1, produto = produtos1, forncedor = "mercado tudo")
     zoologico1 = Zoologico.create(nome = "AnjinhosZoo", setor = setor1, funcionarios = funcionario1)
     
-    json = list(map(model_to_dict, Alimentos.select()))
-
-    print(json)
-
-    {
-        "zoologico" : {
-            "nome" : "meu zoo",
-            "setor" : {
-                
-            }
-        }
-    }
+    
